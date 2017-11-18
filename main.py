@@ -420,7 +420,7 @@ if __name__ == "__main__":
     #     classes=13
     # )
     builder = ResnetBuilder()
-    model = builder.build_resnet_50((3, 68, 120), 13)
+    model = builder.build_resnet_34((3, 68, 120), 13)
 
     model.compile(
         loss=keras.losses.categorical_crossentropy,
