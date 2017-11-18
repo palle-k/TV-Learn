@@ -177,5 +177,25 @@ if __name__ == "__main__":
     generator = load_dataset(sys.argv[1])
     validation_generator = load_dataset(sys.argv[2])
 
-    model.fit_generator(generator, steps_per_epoch=64, epochs=128, validation_data=validation_generator, validation_steps=16, verbose=True)
+    board = keras.callbacks.TensorBoard(
+        log_dir='./logs',
+        histogram_freq=0,
+        batch_size=32,
+        write_graph=True,
+        write_grads=False,
+        write_images=False,
+        embeddings_freq=0,
+        embeddings_layer_names=None,
+        embeddings_metadata=None
+    )
+
+    model.fit_generator(
+        generator,
+        steps_per_epoch=64,
+        epochs=128,
+        validation_data=validation_generator,
+        validation_steps=16,
+        verbose=True,
+        callbacks=[board]
+    )
     model.save(sys.argv[3])
