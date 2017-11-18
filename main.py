@@ -1,12 +1,6 @@
 import keras
-from keras.preprocessing.image import ImageDataGenerator
-from keras.utils import plot_model
-from scipy.ndimage.interpolation import shift
 import sys
-import random
-
 import warnings
-
 from keras.models import Model
 from keras.layers import Flatten, Dense, Input
 from keras.layers import Conv2D
@@ -17,6 +11,7 @@ from keras.utils import layer_utils
 from keras.utils.data_utils import get_file
 from keras import backend as K
 from keras.engine.topology import get_source_inputs
+from keras.preprocessing.image import ImageDataGenerator
 
 
 def create_classification_model(include_top=True,
