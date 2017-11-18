@@ -197,7 +197,7 @@ if __name__ == "__main__":
     model.fit_generator(
         generator,
         steps_per_epoch=nb_train_samples // batch_size,
-        epochs=16,
+        epochs=6,
         validation_data=validation_generator,
         validation_steps=nb_validation_samples // batch_size,
         verbose=True,
