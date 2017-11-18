@@ -191,7 +191,7 @@ if __name__ == "__main__":
 
     model.fit_generator(
         generator,
-        steps_per_epoch=64,
+        steps_per_epoch=2000,
         epochs=128,
         validation_data=validation_generator,
         validation_steps=16,
