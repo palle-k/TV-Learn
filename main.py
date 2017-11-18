@@ -19,13 +19,12 @@ from keras import backend as K
 from keras.engine.topology import get_source_inputs
 
 
-def VGG19(include_top=True,
-          input_tensor=None, input_shape=None,
-          pooling=None,
-          classes=1000):
-    """Instantiates the VGG19 architecture.
-    Optionally loads weights pre-trained
-    on ImageNet. Note that when using TensorFlow,
+def create_classification_model(include_top=True,
+                                input_tensor=None, input_shape=None,
+                                pooling=None,
+                                classes=1000):
+    """Instantiates the classification model.
+    Note that when using TensorFlow,
     for best performance you should set
     `image_data_format="channels_last"` in your Keras config
     at ~/.keras/keras.json.
@@ -156,7 +155,7 @@ def load_dataset(dataset_root):
         target_size=(68, 120),
         color_mode='rgb',
         class_mode='categorical',
-        batch_size=32
+        batch_size=32,
     )
 
 
@@ -166,7 +165,7 @@ if __name__ == "__main__":
         print("expected <training-dir> <validation-dir> <model-destination>")
         print(sys.argv)
 
-    model = VGG19(
+    model = create_classification_model(
         include_top=True,
         input_tensor=None,
         input_shape=(68, 120, 3),
