@@ -150,7 +150,8 @@ def load_dataset(dataset_root):
         target_size=(68, 120),
         color_mode='rgb',
         class_mode='categorical',
-        shuffle=True
+        shuffle=True,
+        seed=42
     )
 
 
@@ -196,7 +197,7 @@ if __name__ == "__main__":
     model.fit_generator(
         generator,
         steps_per_epoch=nb_train_samples // batch_size,
-        epochs=128,
+        epochs=16,
         validation_data=validation_generator,
         validation_steps=nb_validation_samples // batch_size,
         verbose=True,
