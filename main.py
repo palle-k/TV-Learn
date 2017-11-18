@@ -177,6 +177,10 @@ if __name__ == "__main__":
     generator = load_dataset(sys.argv[1])
     validation_generator = load_dataset(sys.argv[2])
 
+    nb_train_samples = 35111
+    nb_validation_samples = 8630
+    batch_size = 32
+
     board = keras.callbacks.TensorBoard(
         log_dir='./logs',
         histogram_freq=0,
@@ -191,10 +195,10 @@ if __name__ == "__main__":
 
     model.fit_generator(
         generator,
-        steps_per_epoch=2000,
+        steps_per_epoch=nb_train_samples // batch_size,
         epochs=128,
         validation_data=validation_generator,
-        validation_steps=16,
+        validation_steps=nb_validation_samples // batch_size,
         verbose=True,
         callbacks=[board]
     )
