@@ -79,7 +79,7 @@ def create_classification_model(include_top=True,
     x = MaxPooling2D((2, 2), strides=(2, 2), name='block4_pool')(x)
 
     # Block 5
-    x = Conv2D(128, (3, 3), activation='relu', padding='same', name='block5_conv1')(x)
+    x = Conv2D(512, (3, 3), activation='relu', padding='same', name='block5_conv1')(x)
     x = MaxPooling2D((2, 2), strides=(2, 2), name='block5_pool')(x)
 
     if include_top:
@@ -137,11 +137,12 @@ def create_classification_model(include_top=True,
 
 def load_dataset(dataset_root):
     generator = ImageDataGenerator(
-        rotation_range=2,
-        width_shift_range=0.05,
-        height_shift_range=0.05,
-        shear_range=0.05,
-        zoom_range=[0.95, 1.08],
+        rotation_range=5,
+        width_shift_range=0.1,
+        height_shift_range=0.1,
+        channel_shift_range=0.1,
+        shear_range=0.08,
+        zoom_range=[0.9, 1.1],
         fill_mode='constant',
         cval=0
     )
@@ -159,7 +160,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) != 4:
         print("expected <training-dir> <validation-dir> <model-destination>")
-        print(sys.argv)
+        exit(0)
 
     model = create_classification_model(
         include_top=True,
