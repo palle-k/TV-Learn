@@ -123,7 +123,7 @@ def create_classification_model(include_top=True,
     #             shape = maxpool.output_shape[1:]
     #             dense = model.get_layer(name='fc1')
     #             layer_utils.convert_dense_weights_data_format(dense, shape, 'channels_first')
-    # 
+    #
     #         if K.backend() == 'tensorflow':
     #             warnings.warn('You are using the TensorFlow backend, yet you '
     #                           'are using the Theano '
@@ -177,5 +177,5 @@ if __name__ == "__main__":
     generator = load_dataset(sys.argv[1])
     validation_generator = load_dataset(sys.argv[2])
 
-    model.fit_generator(generator, steps_per_epoch=512, epochs=10, validation_data=validation_generator, validation_steps=128, verbose=True)
+    model.fit_generator(generator, steps_per_epoch=64, epochs=128, validation_data=validation_generator, validation_steps=16, verbose=True)
     model.save(sys.argv[3])
