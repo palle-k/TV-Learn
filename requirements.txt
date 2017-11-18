@@ -36,6 +36,7 @@ prettytensor
 
 keras==2.0.6
 h5py
+keras-resnet
 
 ################################################################
 # CoreML Tools
