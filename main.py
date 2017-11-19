@@ -17,7 +17,7 @@ from keras.layers.convolutional import (
 )
 
 import keras_resnet.models
-import os
+import os.path
 
 def create_classification_model(include_top=True,
                                 input_tensor=None, input_shape=None,
@@ -174,7 +174,7 @@ if __name__ == "__main__":
     #     pooling=True,
     #     classes=13
     # )
-    if os.isfile(sys.argv[3]):
+    if os.path.isfile(sys.argv[3]):
         print("restoring model")
         model = load_model(sys.argv[3])
     else:
