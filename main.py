@@ -17,6 +17,7 @@ from keras.layers.convolutional import (
 )
 
 import keras_resnet.models
+import os
 
 def create_classification_model(include_top=True,
                                 input_tensor=None, input_shape=None,
