@@ -1,10 +1,5 @@
 import keras
 import sys
-import warnings
-from keras.models import Model
-from keras.layers import Flatten, Dense, Input
-from keras.layers import Conv2D
-from keras.layers import MaxPooling2D
 from keras.layers import GlobalMaxPooling2D
 from keras.layers import GlobalAveragePooling2D
 from keras.engine.topology import get_source_inputs
@@ -178,7 +173,7 @@ if __name__ == "__main__":
     #     pooling=True,
     #     classes=13
     # )
-    model = keras_resnet.models.ResNet50(keras.layers.Input((68, 120, 3)), classes=13)
+    model = keras_resnet.models.ResNet34(keras.layers.Input((68, 120, 3)), classes=13)
 
     model.compile(
         loss=keras.losses.categorical_crossentropy,
@@ -205,6 +200,12 @@ if __name__ == "__main__":
         embeddings_metadata=None
     )
 
+    checkpointer = keras.callbacks.ModelCheckpoint(
+        filepath=sys.argv[3],
+        verbose=1,
+        save_best_only=False
+    )
+
     model.fit_generator(
         generator,
         steps_per_epoch=nb_train_samples // batch_size,
@@ -212,6 +213,6 @@ if __name__ == "__main__":
         validation_data=validation_generator,
         validation_steps=nb_validation_samples // batch_size,
         verbose=True,
-        callbacks=[board]
+        callbacks=[board, checkpointer]
     )
     model.save(sys.argv[3])
