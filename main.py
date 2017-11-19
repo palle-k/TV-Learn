@@ -193,7 +193,7 @@ if __name__ == "__main__":
         histogram_freq=5,
         batch_size=32,
         write_graph=True,
-        write_grads=True,
+        write_grads=False,
         write_images=False,
         embeddings_freq=0,
         embeddings_layer_names=None,
