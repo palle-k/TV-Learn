@@ -173,7 +173,7 @@ if __name__ == "__main__":
     #     pooling=True,
     #     classes=13
     # )
-    model = keras_resnet.models.ResNet34(keras.layers.Input((68, 120, 3)), classes=13)
+    model = keras_resnet.models.ResNet50(keras.layers.Input((68, 120, 3)), classes=13)
 
     model.compile(
         loss=keras.losses.categorical_crossentropy,
