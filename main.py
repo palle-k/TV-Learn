@@ -190,10 +190,10 @@ if __name__ == "__main__":
 
     board = keras.callbacks.TensorBoard(
         log_dir='./logs',
-        histogram_freq=0,
+        histogram_freq=5,
         batch_size=32,
         write_graph=True,
-        write_grads=False,
+        write_grads=True,
         write_images=False,
         embeddings_freq=0,
         embeddings_layer_names=None,
