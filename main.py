@@ -5,7 +5,7 @@ from keras.layers import GlobalAveragePooling2D
 from keras.engine.topology import get_source_inputs
 from keras.preprocessing.image import ImageDataGenerator
 
-from keras.models import Model
+from keras.models import Model, load_model
 from keras.layers import (
     Input,
     Dense,
@@ -173,13 +173,15 @@ if __name__ == "__main__":
     #     pooling=True,
     #     classes=13
     # )
-    model = keras_resnet.models.ResNet50(keras.layers.Input((68, 120, 3)), classes=13)
-
-    model.compile(
-        loss=keras.losses.categorical_crossentropy,
-        optimizer=keras.optimizers.Adadelta(),
-        metrics=['accuracy']
-    )
+    if os.isfile(sys.argv[3]):
+        model = load_model(sys.argv[3])
+    else:
+        model = keras_resnet.models.ResNet50(keras.layers.Input((68, 120, 3)), classes=13)
+        model.compile(
+            loss=keras.losses.categorical_crossentropy,
+            optimizer=keras.optimizers.Adadelta(),
+            metrics=['accuracy']
+        )
 
     generator = load_dataset(sys.argv[1])
     validation_generator = load_dataset(sys.argv[2])
