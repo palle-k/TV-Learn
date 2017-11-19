@@ -174,8 +174,10 @@ if __name__ == "__main__":
     #     classes=13
     # )
     if os.isfile(sys.argv[3]):
+        print("restoring model")
         model = load_model(sys.argv[3])
     else:
+        print("creating new model")
         model = keras_resnet.models.ResNet50(keras.layers.Input((68, 120, 3)), classes=13)
         model.compile(
             loss=keras.losses.categorical_crossentropy,
